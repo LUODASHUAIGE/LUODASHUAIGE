@@ -10,7 +10,7 @@ demogr_15_16 = pd.read_sas('https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/DEMO_I.XP
 demogr_17_18 = pd.read_sas('https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DEMO_J.XPT')
 
 # +
-columns = ['SEQN', 'RIDAGEYR', 'RIDRETH3', 'DMDEDUC2', 'DMDMARTL', 'RIDSTATR', 'SDMVPSU', \
+columns = ['RIAGENDR', 'SEQN', 'RIDAGEYR', 'RIDRETH3', 'DMDEDUC2', 'DMDMARTL', 'RIDSTATR', 'SDMVPSU', \
            'SDMVSTRA', 'WTMEC2YR', 'WTINT2YR']
 demogr_12 = demogr_11_12.loc[:, columns]
 demogr_12['type'] = '11-12'
@@ -18,12 +18,12 @@ demogr_12['type'] = '11-12'
 # variables 'RIDRETH3', 'DMDEDUC2', 'DMDMARTL', 'RIDSTATR', 'SDMVPSU' are categorical,
 # variables 'RIDAGEYR' and 'SDMVSTRA' are integers.
 # so transform types of variables above.
-cate_col = ['RIDRETH3', 'DMDEDUC2', 'DMDMARTL', 'RIDSTATR', 'SDMVPSU']
+cate_col = ['RIAGENDR', 'RIDRETH3', 'DMDEDUC2', 'DMDMARTL', 'RIDSTATR', 'SDMVPSU']
 demogr_12 = demogr_12.astype({'SEQN' : 'str', 'RIDAGEYR' : 'int', 'SDMVSTRA' : 'int'}) 
 for i in cate_col:
     demogr_12.loc[:, i] = demogr_12.astype({i : 'category'})
 # rename columns to make them readable    
-demogr_12 = demogr_12.rename(columns = {'SEQN' : 'id','RIDAGEYR' : 'age', 'RIDRETH3' : 'race', \
+demogr_12 = demogr_12.rename(columns = {'RIAGENDR' : 'gender','SEQN' : 'id','RIDAGEYR' : 'age', 'RIDRETH3' : 'race', \
     'DMDEDUC2' : 'education', 'DMDMARTL' : 'marital Status','RIDSTATR' : 'examine status',\
     'SDMVPSU' : 'masked pseudo-psu','SDMVSTRA' : 'masked pseudo-stratum',\
     'WTMEC2YR' : 'interview & mec','WTINT2YR' : 'interview'})
@@ -33,7 +33,7 @@ demogr_34['type'] = '13-14'
 demogr_34 = demogr_34.astype({'SEQN' : 'str', 'RIDAGEYR' : 'int', 'SDMVSTRA' : 'int'}) 
 for i in cate_col:
     demogr_34.loc[:, i] = demogr_34.astype({i : 'category'})
-demogr_34 = demogr_34.rename(columns = {'SEQN' : 'id','RIDAGEYR' : 'age', 'RIDRETH3' : 'race', \
+demogr_34 = demogr_34.rename(columns = {'RIAGENDR' : 'gender', 'SEQN' : 'id','RIDAGEYR' : 'age', 'RIDRETH3' : 'race', \
     'DMDEDUC2' : 'education', 'DMDMARTL' : 'marital Status','RIDSTATR' : 'examine status',\
     'SDMVPSU' : 'masked pseudo-psu','SDMVSTRA' : 'masked pseudo-stratum',\
     'WTMEC2YR' : 'interview & mec','WTINT2YR' : 'interview'})
@@ -43,7 +43,7 @@ demogr_56['type'] = '15-16'
 demogr_56 = demogr_56.astype({'SEQN' : 'str', 'RIDAGEYR' : 'int', 'SDMVSTRA' : 'int'}) 
 for i in cate_col:
     demogr_56.loc[:, i] = demogr_56.astype({i : 'category'})
-demogr_56 = demogr_56.rename(columns = {'SEQN' : 'id','RIDAGEYR' : 'age', 'RIDRETH3' : 'race', \
+demogr_56 = demogr_56.rename(columns = {'RIAGENDR' : 'gender', 'SEQN' : 'id','RIDAGEYR' : 'age', 'RIDRETH3' : 'race', \
     'DMDEDUC2' : 'education', 'DMDMARTL' : 'marital Status','RIDSTATR' : 'examine status',\
     'SDMVPSU' : 'masked pseudo-psu','SDMVSTRA' : 'masked pseudo-stratum',\
     'WTMEC2YR' : 'interview & mec','WTINT2YR' : 'interview'})
@@ -53,7 +53,7 @@ demogr_78['type'] = '17-18'
 demogr_78 = demogr_78.astype({'SEQN' : 'str', 'RIDAGEYR' : 'int', 'SDMVSTRA' : 'int'}) 
 for i in cate_col:
     demogr_78.loc[:, i] = demogr_78.astype({i : 'category'})
-demogr_78 = demogr_78.rename(columns = {'SEQN' : 'id','RIDAGEYR' : 'age', 'RIDRETH3' : 'race', \
+demogr_78 = demogr_78.rename(columns = {'RIAGENDR' : 'gender', 'SEQN' : 'id','RIDAGEYR' : 'age', 'RIDRETH3' : 'race', \
     'DMDEDUC2' : 'education', 'DMDMARTL' : 'marital Status','RIDSTATR' : 'examine status',\
     'SDMVPSU' : 'masked pseudo-psu','SDMVSTRA' : 'masked pseudo-stratum',\
     'WTMEC2YR' : 'interview & mec','WTINT2YR' : 'interview'})
